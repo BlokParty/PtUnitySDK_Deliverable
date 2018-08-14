@@ -1,4 +1,4 @@
-# PtUnitySDK_Deliverable
+# PtUnitySDK
 
 PlayTable's Unity SDK, contains interfaces of networking, SmartPiece and Account.
 

@@ -18,6 +18,10 @@ public class GameManagerTT : MonoBehaviour {
     public MyMessage msgIn;
     public MyMessage msgOut;
 
+    public InputField inputEmail;
+    public InputField inputPassword;
+    public Text textLog;
+
     private void Awake()
     {
         PTTableTop.Initialize(player, playerParent);
@@ -36,15 +40,23 @@ public class GameManagerTT : MonoBehaviour {
             string spText = "x = " + sp.x + ", y = " + sp.y + "\n ID = " + sp.id;
             textSmartPiece.text = spText;
         };
-
+        PTDevice.OnLoggedIn += (account) =>
+        {
+            textLog.text = "Logged In:\n\n" + account;
+        };
+        PTDevice.OnRegistered += (account) =>
+        {
+            textLog.text = "Registered:\n\n" + account;
+        };
+        PTDevice.OnLogInFailed += (account, echo) =>
+        {
+            textLog.text = "Login Failed:\n\n" + account + "\n\necho=" + echo;
+        };
+        PTDevice.OnRegistrationFailed += (account, echo) =>
+        {
+            textLog.text = "Registration Failed:\n\n" + account + "\n\necho=" + echo;
+        };
     }
-
-    /*private void Handler_OnSmartPiece(SmartPiece sp)
-    {
-        print("ListenSmartPiece: " + sp == null);
-        string spText = "x = " + sp.x + ", y = " + sp.y + "\n ID = " + sp.id; ;
-        textSmartPiece.text = spText;
-    }*/
 
     private void OnEnable()
     {
@@ -68,7 +80,7 @@ public class GameManagerTT : MonoBehaviour {
 
     public void AddNonPhonePlayer()
     {
-        PTTableTop.AddNonPhonePlayer();
+        PTTableTop.AddTabletopPlayer();
     }
 
     void UpdateDropdownPlayer()
@@ -76,7 +88,7 @@ public class GameManagerTT : MonoBehaviour {
         List<string> listPlayerName = new List<string>();
         foreach (PTPlayer player in PTTableTop.players)
         {
-            if (player.ConnectionId > 0)
+            if (player.connectionId > 0)
             {
                 listPlayerName.Add(player.name);
             }
@@ -96,6 +108,18 @@ public class GameManagerTT : MonoBehaviour {
     {
         MyMessage newMsg = Instantiate(isIn? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<MyMessage>();
         newMsg.UpdateContent(senderName, content);
+    }
+
+    public void Login()
+    {
+        print("Login");
+        StartCoroutine(PTDevice.Login(inputEmail.text, inputPassword.text));
+    }
+
+    public void Register()
+    {
+        print("Register");
+        StartCoroutine(PTDevice.Register(inputEmail.text, inputPassword.text, 3));
     }
 }
 

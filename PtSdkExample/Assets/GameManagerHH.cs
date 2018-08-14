@@ -12,6 +12,10 @@ public class GameManagerHH : MonoBehaviour {
     public MyMessage msgOut;
     public InputField inputfieldSendMessage;
 
+    public InputField inputEmail;
+    public InputField inputPassword;
+    public Text textLog;
+
     private void Awake()
     {
         PTHandheld.Initialize();
@@ -24,6 +28,24 @@ public class GameManagerHH : MonoBehaviour {
                     break;
             }
         };
+
+        PTDevice.OnLoggedIn += (account) =>
+        {
+            textLog.text = "Logged In:\n\n" + account;
+        };
+        PTDevice.OnRegistered += (account) =>
+        {
+            textLog.text = "Registered:\n\n" + account;
+        };
+        PTDevice.OnLogInFailed += (account, echo) =>
+        {
+            textLog.text = "Login Failed:\n\n" + account + "\n\necho=" + echo;
+        };
+        PTDevice.OnRegistrationFailed += (account, echo) =>
+        {
+            textLog.text = "Registration Failed:\n\n" + account + "\n\necho=" + echo;
+        };
+
     }
 
     public void Send()
@@ -36,5 +58,15 @@ public class GameManagerHH : MonoBehaviour {
     {
         MyMessage newMsg = Instantiate(isIn ? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<MyMessage>();
         newMsg.UpdateContent(senderName, content);
+    }
+
+    public void Login()
+    {
+        StartCoroutine(PTDevice.Login(inputEmail.text, inputPassword.text));
+    }
+    
+    public void Register()
+    {
+        StartCoroutine(PTDevice.Register(inputEmail.text, inputPassword.text, 3));
     }
 }

@@ -30,7 +30,7 @@ public class MyPlayer : PTPlayer{
     {
         while (true)
         {
-            textName.text = ConnectionId > 0 ? "Player " + ConnectionId : "Non-Phone";
+            textName.text = connectionId > 0 ? "Player " + connectionId : "Non-Phone";
             yield return new WaitForSeconds(updateTimer);
         }
     }

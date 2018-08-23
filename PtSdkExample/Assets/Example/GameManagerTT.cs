@@ -69,7 +69,7 @@ public class GameManagerTT : MonoBehaviour {
         {
             //Status text
             if (NetworkServer.active)
-                textStatus.text = "Discoverable at " + Network.player.ipAddress + ":" + NetworkServer.listenPort + "";
+                textStatus.text = "Discoverable at " + PTDevice.localIPAddress + ":" + NetworkServer.listenPort + "";
             else
                 textStatus.text = "Inactive";
 

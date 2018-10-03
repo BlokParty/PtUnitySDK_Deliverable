@@ -3,19 +3,20 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyPlayer : PTPlayer{
+public class MyPlayer : MonoBehaviour{
     public float updateTimer = 1;
     public Text textName;
+    private PTPlayer ptPlayer;
 
     private void Awake()
     {
-        OnCommanded += (msg) =>
+        ptPlayer = GetComponent<PTPlayer>();
+        ptPlayer.OnReceived += (msg) =>
         {
-            print("OnNotified: " + msg);
             switch (msg.type)
             {
                 case MyMsgType.Message:
-                    FindObjectOfType<GameManagerTT>().AddMessage(true, name, msg.value);
+                    FindObjectOfType<GameManagerTT>().AddMessage(true, name, msg.text);
                     break;
             }
         };
@@ -30,7 +31,7 @@ public class MyPlayer : PTPlayer{
     {
         while (true)
         {
-            textName.text = connectionId > 0 ? "Player " + connectionId : "Non-Phone";
+            textName.text = ptPlayer.connectionId > 0 ? "Player " + ptPlayer.connectionId : "Non-Phone";
             yield return new WaitForSeconds(updateTimer);
         }
     }

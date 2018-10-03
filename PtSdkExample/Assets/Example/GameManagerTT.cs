@@ -24,9 +24,9 @@ public class GameManagerTT : MonoBehaviour {
 
     private void Awake()
     {
-        PTTableTop.Initialize(player, playerParent);
+        PTTableTop.Initialize(player, playerParent, 3, 8);
 
-        PTTableTop.OnConnected += (player) =>
+        PTTableTop.OnLinked += (player) =>
         {
             UpdateDropdownPlayer();
         };
@@ -36,7 +36,6 @@ public class GameManagerTT : MonoBehaviour {
         };
         PTTableTop.OnSmartPiece += (sp)=>
         {
-            print("ListenSmartPiece: " + sp == null);
             string spText = "x = " + sp.x + ", y = " + sp.y + "\n ID = " + sp.id;
             textSmartPiece.text = spText;
         };
@@ -100,8 +99,11 @@ public class GameManagerTT : MonoBehaviour {
     public void Send()
     {
         PTPlayer player = PTTableTop.FindPlayer(dropdownPlayer.captionText.text);
-        player.NotifyHandheld(MyMsgType.Message, inputfieldSendMessage.text);
-        AddMessage(false, "Me", inputfieldSendMessage.text);
+        if (player)
+        {
+            player.Send(MyMsgType.Message, inputfieldSendMessage.text);
+            AddMessage(false, "Me", inputfieldSendMessage.text);
+        }
     }
 
     public void AddMessage(bool isIn, string senderName, string content)

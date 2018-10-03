@@ -19,12 +19,12 @@ public class GameManagerHH : MonoBehaviour {
     private void Awake()
     {
         PTHandheld.Initialize();
-        PTHandheld.OnNotified += (msg) =>
+        PTHandheld.OnReceived += (PTMessage msg) =>
         {
             switch (msg.type)
             {
                 case MyMsgType.Message:
-                    AddMessage(true, "Myself on TT", msg.value);
+                    AddMessage(true, "Myself on TT", msg.text);
                     break;
             }
         };
@@ -50,7 +50,7 @@ public class GameManagerHH : MonoBehaviour {
 
     public void Send()
     {
-        PTHandheld.Command(MyMsgType.Message, inputfieldSendMessage.text);
+        PTHandheld.Send(MyMsgType.Message, inputfieldSendMessage.text);
         AddMessage(false, "Me", inputfieldSendMessage.text);
     }
 

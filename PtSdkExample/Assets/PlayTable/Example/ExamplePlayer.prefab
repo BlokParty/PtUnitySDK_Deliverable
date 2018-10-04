@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114687076087339620}
   - component: {fileID: 114161983431817668}
   m_Layer: 5
-  m_Name: MyPlayer
+  m_Name: ExamplePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateTimer: 1
   textName: {fileID: 114702838812231156}
+  ptPlayer: {fileID: 0}
 --- !u!114 &114687076087339620
 MonoBehaviour:
   m_ObjectHideFlags: 1

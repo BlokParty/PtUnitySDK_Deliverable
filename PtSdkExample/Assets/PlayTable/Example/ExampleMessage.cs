@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyMessage : MonoBehaviour {
+public class ExampleMessage : MonoBehaviour {
     public Text textPlayerName;
     public Text textMsg;
 

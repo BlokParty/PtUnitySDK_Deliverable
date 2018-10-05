@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyPlayer : MonoBehaviour{
+public class ExamplePlayer : MonoBehaviour{
     public float updateTimer = 1;
     public Text textName;
     private PTPlayer ptPlayer;

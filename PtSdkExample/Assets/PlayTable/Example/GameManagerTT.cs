@@ -15,8 +15,8 @@ public class GameManagerTT : MonoBehaviour {
     public Text textStatus;
 
     public Transform contentMsg;
-    public MyMessage msgIn;
-    public MyMessage msgOut;
+    public ExampleMessage msgIn;
+    public ExampleMessage msgOut;
 
     public InputField inputEmail;
     public InputField inputPassword;
@@ -108,7 +108,7 @@ public class GameManagerTT : MonoBehaviour {
 
     public void AddMessage(bool isIn, string senderName, string content)
     {
-        MyMessage newMsg = Instantiate(isIn? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<MyMessage>();
+        ExampleMessage newMsg = Instantiate(isIn? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<ExampleMessage>();
         newMsg.UpdateContent(senderName, content);
     }
 

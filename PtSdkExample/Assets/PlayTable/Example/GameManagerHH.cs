@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class GameManagerHH : MonoBehaviour {
     public Transform contentMsg;
-    public MyMessage msgIn;
-    public MyMessage msgOut;
+    public ExampleMessage msgIn;
+    public ExampleMessage msgOut;
     public InputField inputfieldSendMessage;
 
     public InputField inputEmail;
@@ -56,7 +56,7 @@ public class GameManagerHH : MonoBehaviour {
 
     public void AddMessage(bool isIn, string senderName, string content)
     {
-        MyMessage newMsg = Instantiate(isIn ? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<MyMessage>();
+        ExampleMessage newMsg = Instantiate(isIn ? msgIn.gameObject : msgOut.gameObject, contentMsg).GetComponent<ExampleMessage>();
         newMsg.UpdateContent(senderName, content);
     }
 

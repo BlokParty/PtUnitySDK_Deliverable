@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f6c04bd78eb50dc4abd09a4c00c86ede
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aristotelica Display
+  fontNames:
+  - Aristotelica Display
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ee9f3fd83ae00ff4c8c2166b46092c53, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
